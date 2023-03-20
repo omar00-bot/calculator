@@ -1,6 +1,7 @@
 const resultContainer = document.querySelector(`.result`);
 const lastResultContainer = document.querySelector(`.last-result`);
 let operated = false;
+let lastEntry={};
 
 function clearDisplay() {
   resultContainer.innerHTML = ``;
@@ -77,9 +78,8 @@ function appendValue(str) {
 }
 
 function operate() {
-  entries = resultContainer.innerHTML.split(` `);
-  console.log(entries);
   let result;
+  entries = resultContainer.innerHTML.split(` `);
   num1 = parseFloat(entries[0]);
   num2 = parseFloat(entries[2]);
   operation = entries[1];
@@ -89,6 +89,7 @@ function operate() {
   switch (operation) {
     case `*`:
       result = num1 * num2;
+      lastEquation(num1);
       resultContainer.innerHTML = result;
       operated = true;
       if (entries[2] === ``) {
@@ -105,12 +106,14 @@ function operate() {
         operated = false;
       } else {
         result = num1 / num2;
+        lastEquation(num1);
         resultContainer.innerHTML = result;
         operated = true;
       }
       break;
     case `+`:
       result = num1 + num2;
+      lastEquation(num1);
       resultContainer.innerHTML = result;
       operated = true;
       if (entries[2] === ``) {
@@ -120,6 +123,7 @@ function operate() {
       break;
     case `-`:
       result = num1 - num2;
+      lastEquation(num1);
       resultContainer.innerHTML = result;
       operated = true;
       if (entries[2] === ``) {
@@ -129,6 +133,7 @@ function operate() {
       break;
     case `%`:
       result = num1 % num2;
+      lastEquation(num1);
       resultContainer.innerHTML = result;
       operated = true;
       if (entries[2] === ``) {
@@ -137,4 +142,14 @@ function operate() {
       }
       break;
   }
+}
+
+function lastEquation(num1){
+if(entries[0] === ""){
+  lastEntry.lastEquation=`${num1}${resultContainer.innerHTML}`;
+  console.log(lastEntry)
+}else{
+lastEntry.lastEquation=resultContainer.innerHTML;
+console.log(lastEntry)
+}
 }
