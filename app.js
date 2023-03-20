@@ -13,20 +13,37 @@ function deleteLastChar() {
   );
 }
 
+function changeSign(){
+    entries = resultContainer.innerHTML.split(` `);
+    console.log(entries)
+    newNumber = entries[entries.length-1]*-1;
+    entries[entries.length-1] = newNumber;
+    resultContainer.innerHTML = entries.join(` `);
+}
+
 function appendValue(str) {
   resultContainer.innerHTML += str;
+  
+  // numbers = resultContainer.innerHTML.match(/\d+(\.\d+)?/g).map(Number);
+  // console.log(numbers)
+  // if(Object.keys(numbers).length===2){
 
-pointCounter = resultContainer.innerHTML.match(/\D/g);
-objectLength = Object.keys(pointCounter).length;
-if(pointCounter[objectLength-1] === `.` && pointCounter[objectLength-2] === `.`){
+  // }
+
+  pointCounter = resultContainer.innerHTML.match(/\D/g);
+  objectLength = Object.keys(pointCounter).length;
+  if (
+    pointCounter[objectLength - 1] === `.` &&
+    pointCounter[objectLength - 2] === `.`
+  ) {
     deleteLastChar();
-}
+  }
 
   lastTwoStr = resultContainer.innerHTML.substring(
     resultContainer.innerHTML.length - 2,
     resultContainer.innerHTML.length
   );
- 
+
   lastThreeStr = resultContainer.innerHTML.substring(
     resultContainer.innerHTML.length - 3,
     resultContainer.innerHTML.length
@@ -46,29 +63,30 @@ if(pointCounter[objectLength-1] === `.` && pointCounter[objectLength-2] === `.`)
 }
 
 function calculate() {
-  operation = resultContainer.innerHTML.match(/[\+\-\/\*\%]/);
-  index = resultContainer.innerHTML.search(/[\+\-\/\*\%]/);
-  num1 = parseFloat(resultContainer.innerHTML.slice(0, index));
-  num2 = parseFloat(resultContainer.innerHTML.slice(index + 1));
-  console.log(operation[0])
+  entries = resultContainer.innerHTML.split(` `);
+  num1 = parseFloat(entries[0]);
+  num2 = parseFloat(entries[2]);
+  operation = entries[1]
+console.log(num1)
+console.log(num2)
+console.log(operation)
   var result;
-  switch (operation[0]) {
+  switch (operation) {
     case `*`:
-        result = num1 * num2;
-        resultContainer.innerHTML = result;
-        break;
+      result = num1 * num2;
+      resultContainer.innerHTML = result;
+      break;
     case `/`:
-        result = num1 / num2;
-        resultContainer.innerHTML = result;
-        break;
-    case `+`:
-        result = num1 + num2;
-        resultContainer.innerHTML = result;
-        break;
+      result = num1 / num2;
+      resultContainer.innerHTML = result;
+      break;
+    case `+`: 
+      result = num1 + num2;
+      resultContainer.innerHTML = result;
+      break;
     case `-`:
-        result = num1 - num2;
-        resultContainer.innerHTML = result;
-        break;
+      result = num1 - num2;
+      resultContainer.innerHTML = result;
+      break;
   }
 }
-
