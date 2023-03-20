@@ -1,5 +1,5 @@
 const resultContainer = document.querySelector(`.result`);
-const lastResultContainer = document.querySelector(`.last-resultContainer`);
+const lastResultContainer = document.querySelector(`.last-result`);
 let operated = false;
 
 function clearDisplay() {
@@ -36,6 +36,11 @@ function changeSign() {
 }
 
 function appendValue(str) {
+  if (operated === true) {
+    lastResultContainer.innerHTML = resultContainer.innerHTML;
+    resultContainer.innerHTML = ``;
+    operated = false;
+  }
   resultContainer.innerHTML += str;
 
   entries = resultContainer.innerHTML.split(` `);
@@ -73,17 +78,21 @@ function appendValue(str) {
 
 function operate() {
   entries = resultContainer.innerHTML.split(` `);
+  console.log(entries);
+  let result;
   num1 = parseFloat(entries[0]);
   num2 = parseFloat(entries[2]);
   operation = entries[1];
-  let result;
+  if (entries[0] === "") {
+    num1 = parseFloat(lastResultContainer.innerHTML);
+  }
   switch (operation) {
     case `*`:
       result = num1 * num2;
       resultContainer.innerHTML = result;
       operated = true;
-      if(entries[2]===``){
-        resultContainer.innerHTML = entries.join(` `)
+      if (entries[2] === ``) {
+        resultContainer.innerHTML = entries.join(` `);
         operated = false;
       }
       break;
@@ -91,10 +100,10 @@ function operate() {
       if (num2 === 0) {
         resultContainer.innerHTML = `Undefined 😡`;
         operated = false;
-      }else if(entries[2]===``){
-        resultContainer.innerHTML = entries.join(` `)
+      } else if (entries[2] === ``) {
+        resultContainer.innerHTML = entries.join(` `);
         operated = false;
-      }else {
+      } else {
         result = num1 / num2;
         resultContainer.innerHTML = result;
         operated = true;
@@ -104,8 +113,8 @@ function operate() {
       result = num1 + num2;
       resultContainer.innerHTML = result;
       operated = true;
-      if(entries[2]===``){
-        resultContainer.innerHTML = entries.join(` `)
+      if (entries[2] === ``) {
+        resultContainer.innerHTML = entries.join(` `);
         operated = false;
       }
       break;
@@ -113,8 +122,8 @@ function operate() {
       result = num1 - num2;
       resultContainer.innerHTML = result;
       operated = true;
-      if(entries[2]===``){
-        resultContainer.innerHTML = entries.join(` `)
+      if (entries[2] === ``) {
+        resultContainer.innerHTML = entries.join(` `);
         operated = false;
       }
       break;
@@ -122,8 +131,8 @@ function operate() {
       result = num1 % num2;
       resultContainer.innerHTML = result;
       operated = true;
-      if(entries[2]===``){
-        resultContainer.innerHTML = entries.join(` `)
+      if (entries[2] === ``) {
+        resultContainer.innerHTML = entries.join(` `);
         operated = false;
       }
       break;
