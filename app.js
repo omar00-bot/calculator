@@ -2,7 +2,7 @@ const resultContainer = document.querySelector(`.result`);
 const lastResultContainer = document.querySelector(`.last-result`);
 const lastEquationContainer = document.querySelector(`.last-equation`);
 let operated = false;
-let lastEntry={};
+let lastEntry = {};
 
 function clearDisplay() {
   resultContainer.innerHTML = ``;
@@ -148,12 +148,12 @@ function operate() {
   }
 }
 
-function lastEquation(num1){
-if(entries[0] === ""){
-  lastEntry.lastEquation=`${num1}${resultContainer.innerHTML}`;
-  console.log(lastEntry)
-}else{
-lastEntry.lastEquation=resultContainer.innerHTML;
-console.log(lastEntry)
-}
+function lastEquation(num1) {
+  if (entries[0] === "") {
+    lastEntry.lastEquation = `${num1}${resultContainer.innerHTML}`;
+    console.log(lastEntry);
+  } else {
+    lastEntry.lastEquation = resultContainer.innerHTML;
+    console.log(lastEntry);
+  }
 }
