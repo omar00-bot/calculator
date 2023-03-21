@@ -1,11 +1,14 @@
 const resultContainer = document.querySelector(`.result`);
 const lastResultContainer = document.querySelector(`.last-result`);
+const lastEquationContainer = document.querySelector(`.last-equation`);
 let operated = false;
 let lastEntry={};
 
 function clearDisplay() {
   resultContainer.innerHTML = ``;
   lastResultContainer.innerHTML = ``;
+  lastEquationContainer.innerHTML = ``;
+  delete lastEntry.lastEquation;
 }
 
 function deleteLastChar() {
@@ -39,6 +42,7 @@ function changeSign() {
 function appendValue(str) {
   if (operated === true) {
     lastResultContainer.innerHTML = resultContainer.innerHTML;
+    lastEquationContainer.innerHTML = lastEntry.lastEquation;
     resultContainer.innerHTML = ``;
     operated = false;
   }

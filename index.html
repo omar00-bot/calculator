@@ -15,38 +15,43 @@
   <div class="content-container">
     <div class="calculator-container">
       <div class="display">
-        <div class="last-result"></div>
+        <div class="last-display">
+          <div class="last-equation"></div>
+          <div class="last-result"></div>
+        </div>
         <div class="result"></div>
       </div>
-      <div class="btn-row">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="deleteLastChar()">&#8592;</button>
-        <button onclick="changeSign()">+/-</button>
-        <button onclick="appendValue(` / `)">/</button>
-      </div>
-      <div class="btn-row">
-        <button onclick="appendValue(`7`)">7</button>
-        <button onclick="appendValue(`8`)">8</button>
-        <button onclick="appendValue(`9`)">9</button>
-        <button onclick="appendValue(` * `)">*</button> 
-      </div>
-      <div class="btn-row">
-        <button onclick="appendValue(`4`)">4</button>
-        <button onclick="appendValue(`5`)">5</button>
-        <button onclick="appendValue(`6`)">6</button>
-        <button onclick="appendValue(` - `)">-</button>
-      </div>
-      <div class="btn-row">
-        <button onclick="appendValue(`1`)">1</button>
-        <button onclick="appendValue(`2`)">2</button>
-        <button onclick="appendValue(`3`)">3</button>
-        <button onclick="appendValue(` + `)">+</button>
-      </div>
-      <div class="btn-row">
-        <button onclick="appendValue(`0`)">0</button>
-        <button onclick="appendValue(`.`)">.</button>
-        <button onclick="appendValue(` % `)">%</button>
-        <button onclick="operate()">=</button>
+      <div class="btn-container">
+        <div class="btn-row">
+          <button onclick="clearDisplay()">C</button>
+          <button onclick="deleteLastChar()">&#8592;</button>
+          <button onclick="changeSign()">+/-</button>
+          <button onclick="appendValue(` / `)">/</button>
+        </div>
+        <div class="btn-row">
+          <button onclick="appendValue(`7`)">7</button>
+          <button onclick="appendValue(`8`)">8</button>
+          <button onclick="appendValue(`9`)">9</button>
+          <button onclick="appendValue(` * `)">*</button>
+        </div>
+        <div class="btn-row">
+          <button onclick="appendValue(`4`)">4</button>
+          <button onclick="appendValue(`5`)">5</button>
+          <button onclick="appendValue(`6`)">6</button>
+          <button onclick="appendValue(` - `)">-</button>
+        </div>
+        <div class="btn-row">
+          <button onclick="appendValue(`1`)">1</button>
+          <button onclick="appendValue(`2`)">2</button>
+          <button onclick="appendValue(`3`)">3</button>
+          <button onclick="appendValue(` + `)">+</button>
+        </div>
+        <div class="btn-row">
+          <button onclick="appendValue(`0`)">0</button>
+          <button onclick="appendValue(`.`)">.</button>
+          <button onclick="appendValue(` % `)">%</button>
+          <button onclick="operate()">=</button>
+        </div>
       </div>
     </div>
   </div>
