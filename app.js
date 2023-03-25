@@ -4,25 +4,39 @@ const lastEquationContainer = document.querySelector(`.last-equation`);
 let lastEntry = {};
 
 // Event listener for keyboard
-document.addEventListener('keydown', e => {
+document.addEventListener("keydown", (e) => {
   // Get the key code of the pressed key
   const key = e.key;
-  console.log(key)
-  switch (key){
+  console.log(key);
+  switch (key) {
     case `Backspace`:
       deleteLastChar();
       break;
-    case `*`: case `/`: case `+`: case `-`: case `%`:
-      appendValue(` ${key} `)
+    case `*`:
+    case `/`:
+    case `+`:
+    case `-`:
+    case `%`:
+      appendValue(` ${key} `);
       break;
-    case `1`: case `2`: case `3`: case `4`: case `5`: case `6`: case `7`: case `8`: case `9`: case `0`: case `.`:  
+    case `1`:
+    case `2`:
+    case `3`:
+    case `4`:
+    case `5`:
+    case `6`:
+    case `7`:
+    case `8`:
+    case `9`:
+    case `0`:
+    case `.`:
       appendValue(`${key}`);
       break;
     case `Enter`:
       operate();
       break;
   }
-})
+});
 
 // Function to clear all the display in calculator
 function clearDisplay() {
@@ -35,7 +49,6 @@ function clearDisplay() {
 
 // Function to delete the last typed character
 function deleteLastChar() {
-
   // Checking the last character in the string
   lastStr = resultContainer.innerHTML.substring(
     resultContainer.innerHTML.length - 1,
@@ -48,7 +61,7 @@ function deleteLastChar() {
       0,
       resultContainer.innerHTML.length - 3
     );
-  } 
+  }
   // Else just delete one character at a time
   else {
     resultContainer.innerHTML = resultContainer.innerHTML.substring(
@@ -128,7 +141,7 @@ function operate() {
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
       } else {
-        result = num1 * num2; 
+        result = num1 * num2;
         lastEquation(num1);
         showAnswer(result);
       }
@@ -139,7 +152,7 @@ function operate() {
         lastResultContainer.innerHTML = `Undefined 😡`;
         lastEquationContainer.innerHTML = ``;
         resultContainer.innerHTML = ``;
-      } 
+      }
       // If theres no second number inputed
       else if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
@@ -195,9 +208,9 @@ function lastEquation(num1) {
 }
 
 // This function is for showing result in screen
-function showAnswer(result){
+function showAnswer(result) {
   // This if else statement is for the fix in javascript floating point precision errors
-  if(result.toFixed(2) % 1 === 0){
+  if (result.toFixed(2) % 1 === 0) {
     lastResultContainer.innerHTML = result.toFixed(0);
   } else {
     lastResultContainer.innerHTML = result.toFixed(2);
