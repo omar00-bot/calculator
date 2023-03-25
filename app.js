@@ -9,6 +9,7 @@ function clearDisplay() {
   lastResultContainer.innerHTML = ``;
   lastEquationContainer.innerHTML = ``;
   delete lastEntry.lastEquation;
+  operated=false;
 }
 
 function deleteLastChar() {
@@ -41,7 +42,6 @@ function changeSign() {
 
 function appendValue(str) {
   if (operated === true) {
-    lastResultContainer.innerHTML = resultContainer.innerHTML;
     lastEquationContainer.innerHTML = lastEntry.lastEquation;
     resultContainer.innerHTML = ``;
     operated = false;
@@ -87,23 +87,34 @@ function operate() {
   num1 = parseFloat(entries[0]);
   num2 = parseFloat(entries[2]);
   operation = entries[1];
-  if (entries[0] === "") {
+  if (entries[0] === "" && lastResultContainer.innerHTML!==``) {
     num1 = parseFloat(lastResultContainer.innerHTML);
   }
+console.log(num1)
+console.log(num2)
   switch (operation) {
     case `*`:
-      result = num1 * num2;
-      lastEquation(num1);
-      resultContainer.innerHTML = result;
-      operated = true;
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
         operated = false;
+      } else {
+        result = num1 * num2;
+        lastEquation(num1);
+        if(result.toFixed(2) % 1 === 0){
+          lastResultContainer.innerHTML = result.toFixed(0);
+        } else {
+          lastResultContainer.innerHTML = result.toFixed(2);
+        }
+        lastEquationContainer.innerHTML = lastEntry.lastEquation;
+        resultContainer.innerHTML = ``;
+        operated = true;
       }
       break;
     case `/`:
       if (num2 === 0) {
-        resultContainer.innerHTML = `Undefined 😡`;
+        lastResultContainer.innerHTML = `Undefined 😡`;
+        lastEquationContainer.innerHTML = ``;
+        resultContainer.innerHTML = ``;
         operated = false;
       } else if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
@@ -111,42 +122,70 @@ function operate() {
       } else {
         result = num1 / num2;
         lastEquation(num1);
-        resultContainer.innerHTML = result;
+        if(result.toFixed(2) % 1 === 0){
+          lastResultContainer.innerHTML = result.toFixed(0);
+        } else {
+          lastResultContainer.innerHTML = result.toFixed(2);
+        }
+        lastEquationContainer.innerHTML = lastEntry.lastEquation;
+        resultContainer.innerHTML = ``;
         operated = true;
       }
       break;
     case `+`:
-      result = num1 + num2;
-      lastEquation(num1);
-      resultContainer.innerHTML = result;
-      operated = true;
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
         operated = false;
+      } else {
+        result = num1 + num2;
+        lastEquation(num1);
+        if(result.toFixed(2) % 1 === 0){
+          lastResultContainer.innerHTML = result.toFixed(0);
+        } else {
+          lastResultContainer.innerHTML = result.toFixed(2);
+        }
+        lastEquationContainer.innerHTML = lastEntry.lastEquation;
+        resultContainer.innerHTML = ``;
+        operated = true;
       }
       break;
     case `-`:
-      result = num1 - num2;
-      lastEquation(num1);
-      resultContainer.innerHTML = result;
-      operated = true;
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
         operated = false;
+      } else {
+        result = num1 - num2;
+        lastEquation(num1);
+        if(result.toFixed(2) % 1 === 0){
+          lastResultContainer.innerHTML = result.toFixed(0);
+        } else {
+          lastResultContainer.innerHTML = result.toFixed(2);
+        }
+        lastEquationContainer.innerHTML = lastEntry.lastEquation;
+        resultContainer.innerHTML = ``;
+        operated = true;
       }
       break;
     case `%`:
-      result = num1 % num2;
-      lastEquation(num1);
-      resultContainer.innerHTML = result;
-      operated = true;
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
         operated = false;
+      } else {
+        result = num1 % num2;
+        lastEquation(num1);
+        if(result.toFixed(2) % 1 === 0){
+          lastResultContainer.innerHTML = result.toFixed(0);
+        } else {
+          lastResultContainer.innerHTML = result.toFixed(2);
+        }
+        lastEquationContainer.innerHTML = lastEntry.lastEquation;
+        resultContainer.innerHTML = ``;
+        operated = true;
       }
       break;
   }
 }
+
 
 function lastEquation(num1) {
   if (entries[0] === "") {
