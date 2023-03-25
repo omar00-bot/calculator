@@ -1,7 +1,6 @@
 const resultContainer = document.querySelector(`.result`);
 const lastResultContainer = document.querySelector(`.last-result`);
 const lastEquationContainer = document.querySelector(`.last-equation`);
-let operated = false;
 let lastEntry = {};
 
 function clearDisplay() {
@@ -9,7 +8,6 @@ function clearDisplay() {
   lastResultContainer.innerHTML = ``;
   lastEquationContainer.innerHTML = ``;
   delete lastEntry.lastEquation;
-  operated=false;
 }
 
 function deleteLastChar() {
@@ -41,11 +39,6 @@ function changeSign() {
 }
 
 function appendValue(str) {
-  if (operated === true) {
-    lastEquationContainer.innerHTML = lastEntry.lastEquation;
-    resultContainer.innerHTML = ``;
-    operated = false;
-  }
   resultContainer.innerHTML += str;
 
   entries = resultContainer.innerHTML.split(` `);
@@ -90,13 +83,10 @@ function operate() {
   if (entries[0] === "" && lastResultContainer.innerHTML!==``) {
     num1 = parseFloat(lastResultContainer.innerHTML);
   }
-console.log(num1)
-console.log(num2)
   switch (operation) {
     case `*`:
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
-        operated = false;
       } else {
         result = num1 * num2;
         lastEquation(num1);
@@ -107,7 +97,6 @@ console.log(num2)
         }
         lastEquationContainer.innerHTML = lastEntry.lastEquation;
         resultContainer.innerHTML = ``;
-        operated = true;
       }
       break;
     case `/`:
@@ -115,10 +104,8 @@ console.log(num2)
         lastResultContainer.innerHTML = `Undefined 😡`;
         lastEquationContainer.innerHTML = ``;
         resultContainer.innerHTML = ``;
-        operated = false;
       } else if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
-        operated = false;
       } else {
         result = num1 / num2;
         lastEquation(num1);
@@ -129,13 +116,11 @@ console.log(num2)
         }
         lastEquationContainer.innerHTML = lastEntry.lastEquation;
         resultContainer.innerHTML = ``;
-        operated = true;
       }
       break;
     case `+`:
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
-        operated = false;
       } else {
         result = num1 + num2;
         lastEquation(num1);
@@ -146,13 +131,11 @@ console.log(num2)
         }
         lastEquationContainer.innerHTML = lastEntry.lastEquation;
         resultContainer.innerHTML = ``;
-        operated = true;
       }
       break;
     case `-`:
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
-        operated = false;
       } else {
         result = num1 - num2;
         lastEquation(num1);
@@ -163,13 +146,11 @@ console.log(num2)
         }
         lastEquationContainer.innerHTML = lastEntry.lastEquation;
         resultContainer.innerHTML = ``;
-        operated = true;
       }
       break;
     case `%`:
       if (entries[2] === ``) {
         resultContainer.innerHTML = entries.join(` `);
-        operated = false;
       } else {
         result = num1 % num2;
         lastEquation(num1);
@@ -180,7 +161,6 @@ console.log(num2)
         }
         lastEquationContainer.innerHTML = lastEntry.lastEquation;
         resultContainer.innerHTML = ``;
-        operated = true;
       }
       break;
   }
