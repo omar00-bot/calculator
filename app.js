@@ -3,6 +3,27 @@ const lastResultContainer = document.querySelector(`.last-result`);
 const lastEquationContainer = document.querySelector(`.last-equation`);
 let lastEntry = {};
 
+// Event listener for keyboard
+document.addEventListener('keydown', e => {
+  // Get the key code of the pressed key
+  const key = e.key;
+  console.log(key)
+  switch (key){
+    case `Backspace`:
+      deleteLastChar();
+      break;
+    case `*`: case `/`: case `+`: case `-`: case `%`:
+      appendValue(` ${key} `)
+      break;
+    case `1`: case `2`: case `3`: case `4`: case `5`: case `6`: case `7`: case `8`: case `9`: case `0`: case `.`:  
+      appendValue(`${key}`);
+      break;
+    case `Enter`:
+      operate();
+      break;
+  }
+})
+
 // Function to clear all the display in calculator
 function clearDisplay() {
   resultContainer.innerHTML = ``;
@@ -89,7 +110,7 @@ function appendValue(str) {
 
 // Function for equal operator
 function operate() {
-  let result;
+  let result = 0;
   entries = resultContainer.innerHTML.split(` `);
   // Need to parseFloat() because the entries are in string
   num1 = parseFloat(entries[0]);
